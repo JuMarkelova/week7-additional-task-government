@@ -16,12 +16,15 @@ public class Government {
         this.regions = new ArrayList<>();
         this.cities = new ArrayList<>();
         this.districts = new ArrayList<>();
-        regions.add(new Region("Moscow region"));
-        regions.add(new Region("Novosibirsk region"));
-        cities.add(new City("Moscow"));
-        cities.add(new City("Novosibirsk"));
-        districts.add(new District("Moscow district"));
-        districts.add(new District("Novosibirsk district"));
+        regions.add(new Region("Central"));
+        regions.add(new Region("Siberian"));
+        regions.add(new Region("Ural"));
+        for (Region region : regions) {
+            cities.addAll(region.getCities());
+        }
+        for (City city : cities) {
+            districts.addAll(city.getDistricts());
+        }
     }
 
     public static Government getInstance() {
