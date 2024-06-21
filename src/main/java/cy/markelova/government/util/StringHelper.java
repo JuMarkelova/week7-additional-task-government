@@ -2,9 +2,9 @@ package cy.markelova.government.util;
 
 import java.util.Random;
 
-public class Helper {
+public class StringHelper {
 
-    public static String generateRandomSequence(int minLengthOfSequence, int maxLengthOfSequence) {
+    public static String generateRandomString(int minLengthOfSequence, int maxLengthOfSequence) {
         Random random = new Random();
         int length = random.nextInt(minLengthOfSequence + 1) + maxLengthOfSequence / 2;
         StringBuilder sb = new StringBuilder(length);

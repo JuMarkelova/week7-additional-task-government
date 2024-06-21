@@ -1,40 +1,26 @@
 package cy.markelova.government.entity;
 
-import static cy.markelova.government.util.Helper.generateRandomSequence;
-//TODO resolve the problem of linking citizens and the state
+import static cy.markelova.government.util.StringHelper.generateRandomString;
+
 public class Citizen {
 
-    static int count = 1;
-    final int ID;
+    private int id = 0;
     String firstName;
-
     String lastName;
     int age;
     Government government;
 
     public Citizen(Government government) {
-        this.ID = count++;
+        this.id += 1;
         this.government = government;
         this.age = (int) (Math.random() * 95);
-        this.firstName = generateRandomSequence(5, 10);
-        this.lastName = generateRandomSequence(5, 10);
-    }
-
-//    public Citizen(Government government, boolean isAddedToGovernment) {
-//        this.ID = count++;
-//        this.government = government;
-//        this.age = (int) (Math.random() * 95);
-//        this.firstName = generateRandomSequence(5, 10);
-//        this.lastName = generateRandomSequence(5, 10);
-//        Government.getInstance().setCitizens(this);
-//    }
-
-    public static int getCount() {
-        return count;
+        this.firstName = generateRandomString(5, 10);
+        this.lastName = generateRandomString(5, 10);
+        this.government.setCitizens(this);
     }
 
     public int getID() {
-        return ID;
+        return id;
     }
 
     public Government getGovernment() {

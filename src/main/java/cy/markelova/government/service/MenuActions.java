@@ -1,4 +1,4 @@
-package cy.markelova.government.util;
+package cy.markelova.government.service;
 
 import cy.markelova.government.entity.Citizen;
 import cy.markelova.government.entity.Government;
@@ -8,8 +8,10 @@ import java.util.Scanner;
 
 public class MenuActions {
 
+    private static Government government = Government.getInstance();
+
     public static void printCapital() {
-        System.out.printf("The capital of the state is %s.\n", Government.getInstance().getCapital().getName());
+        System.out.printf("The capital of the state is %s.\n", government.getCapital().getName());
     }
 
     public static void printCountRegions() {
@@ -26,8 +28,10 @@ public class MenuActions {
             System.out.println(" -" + region.getRegionalCenter().getName());
         }
     }
+
     public static void printAverageAgeCitizens() {
-        System.out.printf("An average age of citizens is %d years.\n", Government.getInstance().countAverageAgeCitizens());
+        System.out.printf("An average age of citizens is %d years.\n",
+                Government.getInstance().countAverageAgeCitizens());
     }
 
     public static String inputFirstLetterOfCitizenName() {
@@ -40,7 +44,7 @@ public class MenuActions {
         System.out.printf("There are a list of citizens name starts with '%s':\n", letter);
         for (Citizen citizen : Government.getInstance().getCitizens()) {
             if (citizen.getFirstName().startsWith(String.valueOf(letter))) {
-                System.out.println(" -" + citizen.toString());
+                System.out.println(" -" + citizen);
             }
         }
     }
@@ -55,7 +59,7 @@ public class MenuActions {
         System.out.printf("There are a list of citizens whose consists of %d letters:\n", lengthOfName);
         for (Citizen citizen : Government.getInstance().getCitizens()) {
             if (citizen.getFirstName().length() == lengthOfName) {
-                System.out.println(" -" + citizen.toString());
+                System.out.println(" -" + citizen);
             }
         }
     }

@@ -3,7 +3,7 @@ package cy.markelova.government.entity;
 import java.util.ArrayList;
 import java.util.List;
 
-import static cy.markelova.government.util.Helper.generateRandomSequence;
+import static cy.markelova.government.util.StringHelper.generateRandomString;
 
 public class Region {
 
@@ -17,7 +17,7 @@ public class Region {
         this.name = name;
         this.cities = new ArrayList<>();
         for (int i = 0; i < 3; i++) {
-            this.cities.add(new City(generateRandomSequence(5, 10)));
+            this.cities.add(new City(generateRandomString(5, 10)));
         }
         this.area = area;
         this.regionalCenter = cities.get((int) (Math.random() * cities.size()));

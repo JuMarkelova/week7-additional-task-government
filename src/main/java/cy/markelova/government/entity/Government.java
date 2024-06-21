@@ -10,8 +10,8 @@ public class Government {
     private City capital;
     private List<Region> regions;
     private List<City> cities;
-    private static List<District> districts;
-    private static List<Citizen> citizens;
+    private List<District> districts;
+    private List<Citizen> citizens;
 
     private Government() {
         this.name = "Russia";
@@ -29,12 +29,14 @@ public class Government {
             this.districts.addAll(city.getDistricts());
         }
         this.capital = this.cities.getFirst();
+        generateCitizens1(citizens, districts);
+
     }
 
     public static Government getInstance() {
         if (instance == null) {
             instance = new Government();
-            generateCitizens(citizens, districts);
+          //  generateCitizens(citizens, districts);
         }
         return instance;
     }
@@ -87,11 +89,10 @@ public class Government {
         this.capital = capital;
     }
 
-    public static void generateCitizens(List<Citizen> citizens, List<District> districts) {
+    public void generateCitizens1(List<Citizen> citizens, List<District> districts) {
         for (District district : districts) {
             for (int i = 0; i < 10; i++) {
-                Citizen citizen = new Citizen(instance);
-                citizens.add(citizen);
+                Citizen citizen = new Citizen(this);
                 district.setCitizens(citizen);
             }
         }
