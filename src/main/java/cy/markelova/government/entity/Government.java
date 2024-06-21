@@ -8,27 +8,27 @@ public class Government {
     private static Government instance;
     private String name;
     private City capital;
-    private static List<Region> regions;
-    private static List<City> cities;
+    private List<Region> regions;
+    private List<City> cities;
     private static List<District> districts;
     private static List<Citizen> citizens;
 
     private Government() {
         this.name = "Russia";
-        regions = new ArrayList<>();
-        cities = new ArrayList<>();
-        districts = new ArrayList<>();
-        citizens = new ArrayList<>();
-        regions.add(new Region("Central", 650205));
-        regions.add(new Region("Siberian", 4361727));
-        regions.add(new Region("Ural", 1818497));
-        for (Region region : regions) {
-            cities.addAll(region.getCities());
+        this.regions = new ArrayList<>();
+        this.cities = new ArrayList<>();
+        this.districts = new ArrayList<>();
+        this.citizens = new ArrayList<>();
+        this.regions.add(new Region("Central", 650205));
+        this.regions.add(new Region("Siberian", 4361727));
+        this.regions.add(new Region("Ural", 1818497));
+        for (Region region : this.regions) {
+            this.cities.addAll(region.getCities());
         }
-        for (City city : cities) {
-            districts.addAll(city.getDistricts());
+        for (City city : this.cities) {
+            this.districts.addAll(city.getDistricts());
         }
-        this.capital = cities.getFirst();
+        this.capital = this.cities.getFirst();
     }
 
     public static Government getInstance() {
@@ -55,24 +55,28 @@ public class Government {
         return districts;
     }
 
+    public List<Citizen> getCitizens() {
+        return this.citizens;
+    }
+
     public void setName(String name) {
         this.name = name;
     }
 
-    public void setRegions(Region regions) {
-        regions = regions;
+    public void setRegions(Region region) {
+        this.regions.add(region);
     }
 
-    public void setCities(List<City> cities) {
-        this.cities = cities;
+    public void setCities(City city) {
+        this.cities.add(city);
     }
 
-    public void setDistricts(List<District> districts) {
-        this.districts = districts;
+    public void setDistricts(District district) {
+        this.districts.add(district);
     }
 
-    public void setCitizens(List<Citizen> citizens) {
-        this.citizens = citizens;
+    public void setCitizens(Citizen citizen) {
+        this.citizens.add(citizen);
     }
 
     public City getCapital() {
@@ -105,4 +109,11 @@ public class Government {
         return sumOfRegionsArea;
     }
 
+    public int countAverageAgeCitizens() {
+        int sum = 0;
+        for (Citizen citizen : citizens) {
+            sum += citizen.getAge();
+        }
+        return sum / citizens.size();
+    }
 }
