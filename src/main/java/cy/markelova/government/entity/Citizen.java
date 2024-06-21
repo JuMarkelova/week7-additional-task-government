@@ -11,9 +11,9 @@ public class Citizen {
     int age;
     Government government;
 
-    public Citizen() {
+    public Citizen(Government government) {
         this.ID = count++;
-        this.government = Government.getInstance();
+        this.government = government;
         this.age = (int) (Math.random() * 95);
         this.firstName = generateRandomSequence(5, 10);
         this.lastName = generateRandomSequence(5, 10);

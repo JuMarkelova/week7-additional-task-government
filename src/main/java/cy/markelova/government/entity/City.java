@@ -13,7 +13,7 @@ public class City {
     public City(String name) {
         this.name = name;
         this.districts = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 3; i++) {
             this.districts.add(new District(generateRandomSequence(10, 15)));
         }
     }
