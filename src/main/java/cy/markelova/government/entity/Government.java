@@ -19,18 +19,11 @@ public class Government {
         this.cities = new ArrayList<>();
         this.districts = new ArrayList<>();
         this.citizens = new ArrayList<>();
-        this.regions.add(new Region("Central", 650205));
-        this.regions.add(new Region("Siberian", 4361727));
-        this.regions.add(new Region("Ural", 1818497));
-        for (Region region : this.regions) {
-            this.cities.addAll(region.getCities());
-        }
-        for (City city : this.cities) {
-            this.districts.addAll(city.getDistricts());
-        }
+        new Region("Central", 650205, this);
+        new Region("Siberian", 4361727, this);
+        new Region("Ural", 1818497, this);
         this.capital = this.cities.getFirst();
-        generateCitizens1(citizens, districts);
-
+        generateCitizens(citizens, districts);
     }
 
     public static Government getInstance() {
@@ -88,10 +81,10 @@ public class Government {
         this.capital = capital;
     }
 
-    public void generateCitizens1(List<Citizen> citizens, List<District> districts) {
+    public void generateCitizens(List<Citizen> citizens, List<District> districts) {
         for (District district : districts) {
-            for (int i = 0; i < 10; i++) {
-                Citizen citizen = new Citizen(this);
+            for (int i = 0; i < Math.random() * 20 + 10; i++) {
+                Citizen citizen = new Citizen(this, district);
                 district.setCitizens(citizen);
             }
         }

@@ -9,14 +9,16 @@ public class Citizen {
     String lastName;
     int age;
     Government government;
+    District district;
 
-    public Citizen(Government government) {
+    public Citizen(Government government, District district) {
         this.id += 1;
         this.government = government;
         this.age = (int) (Math.random() * 95);
         this.firstName = generateRandomString(5, 10);
         this.lastName = generateRandomString(5, 10);
         this.government.setCitizens(this);
+        this.district = district;
     }
 
     public int getID() {

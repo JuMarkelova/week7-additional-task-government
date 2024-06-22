@@ -10,12 +10,13 @@ public class City {
     private String name;
     private List<District> districts;
 
-    public City(String name) {
+    public City(String name, Government government) {
         this.name = name;
         this.districts = new ArrayList<>();
-        for (int i = 0; i < 3; i++) {
-            this.districts.add(new District(generateRandomString(10, 15)));
+        for (int i = 0; i < Math.random() * 5 + 2; i++) {
+            this.districts.add(new District(generateRandomString(5, 15), government));
         }
+        government.getCities().add(this);
     }
 
     public String getName() {

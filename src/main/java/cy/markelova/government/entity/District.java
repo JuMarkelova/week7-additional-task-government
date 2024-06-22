@@ -8,8 +8,9 @@ public class District {
     private String name;
     private List<Citizen> citizens = new ArrayList<>();
 
-    public District(String name) {
+    public District(String name, Government government) {
         this.name = name;
+        government.getDistricts().add(this);
     }
 
     public String getName() {
