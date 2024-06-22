@@ -8,57 +8,120 @@ import java.util.Scanner;
 
 public class MenuActions {
 
-    private static Government government = Government.getInstance();
+    private static final Government GOVERNMENT = Government.getInstance();
+    static Scanner scanner = new Scanner(System.in);
 
-    public static void printCapital() {
-        System.out.printf("The capital of the state is %s.\n", government.getCapital().getName());
+    public void runMenu() {
+        showInstructions();
+        boolean isRun = true;
+        while (isRun) {
+            String userChoice = scanner.nextLine();
+            switch (userChoice) {
+                case "0": {
+                    showInstructions();
+                    break;
+                }
+                case "1": {
+                    printCapital();
+                    break;
+                }
+                case "2": {
+                    printCountRegions();
+                    break;
+                }
+                case "3": {
+                    printGovernmentArea();
+                    break;
+                }
+                case "4": {
+                    printListOfRegionalCenters();
+                    break;
+                }
+                case "5": {
+                    printAverageAgeCitizens();
+                    break;
+                }
+                case "6": {
+                    printListCitizensNameStartsWithCertainLetter(inputFirstLetterOfCitizenName());
+                    break;
+                }
+                case "7": {
+                    printListCitizensThisLengthOfName(inputNumberOfLettersOfCitizenName());
+                    break;
+                }
+                case "exit":
+                    isRun = false;
+                    break;
+                default:
+                    System.out.println("There is no such option.");
+            }
+        }
     }
 
-    public static void printCountRegions() {
-        System.out.printf("There are %d regions in the state.\n", Government.getInstance().countRegions());
+    private void showInstructions() {
+        String instruction = """
+                Select an action (write a number or exit):
+                0 - Show instructions
+                1 - The capital of the state
+                2 - Number of regions
+                3 - Area of the state
+                4 - List of regional centers
+                5 - An average age of citizens
+                6 - List of citizens whose name starts with a certain letter
+                7 - List of citizens whose name consists of a certain number of letter
+                exit - exit
+                """;
+        System.out.println(instruction);
     }
 
-    public static void printGovernmentArea() {
-        System.out.printf("The area of the state is %d km^2\n", Government.getInstance().countGovernmentsArea());
+    private void printCapital() {
+        System.out.printf("The capital of the state is %s.\n", GOVERNMENT.getCapital().getName());
     }
 
-    public static void printListOfRegionalCenters() {
+    private void printCountRegions() {
+        System.out.printf("There are %d regions in the state.\n", GOVERNMENT.countRegions());
+    }
+
+    private void printGovernmentArea() {
+        System.out.printf("The area of the state is %d km^2.\n", GOVERNMENT.countGovernmentsArea());
+    }
+
+    private void printListOfRegionalCenters() {
         System.out.println("There is a list of regional centers of the state: ");
-        for (Region region : Government.getInstance().getRegions()) {
+        for (Region region : GOVERNMENT.getRegions()) {
             System.out.println(" -" + region.getRegionalCenter().getName());
         }
     }
 
-    public static void printAverageAgeCitizens() {
+    private void printAverageAgeCitizens() {
         System.out.printf("An average age of citizens is %d years.\n",
-                Government.getInstance().countAverageAgeCitizens());
+                GOVERNMENT.countAverageAgeCitizens());
     }
 
-    public static String inputFirstLetterOfCitizenName() {
-        Scanner scanner = new Scanner(System.in);
+    private String inputFirstLetterOfCitizenName() {
         System.out.println("Input first letter of a name to find citizens: ");
         return (scanner.nextLine());
     }
 
-    public static void printListCitizensNameStartsWithCertainLetter(String letter) {
+    private void printListCitizensNameStartsWithCertainLetter(String letter) {
         System.out.printf("There are a list of citizens name starts with '%s':\n", letter);
-        for (Citizen citizen : Government.getInstance().getCitizens()) {
-            if (citizen.getFirstName().startsWith(String.valueOf(letter))) {
+        for (Citizen citizen : GOVERNMENT.getCitizens()) {
+            if (citizen.getFirstName().startsWith(letter)) {
                 System.out.println(" -" + citizen);
             }
         }
     }
 
-    public static int inputNumberOfLettersOfCitizenName() {
-        Scanner scanner = new Scanner(System.in);
+    private String inputNumberOfLettersOfCitizenName() {
         System.out.println("Input number of letters of a name to find citizens: ");
-        return (scanner.nextInt());
+        return scanner.nextLine();
     }
 
-    public static void printListCitizensThisLengthOfName(int lengthOfName) {
-        System.out.printf("There are a list of citizens whose consists of %d letters:\n", lengthOfName);
-        for (Citizen citizen : Government.getInstance().getCitizens()) {
-            if (citizen.getFirstName().length() == lengthOfName) {
+    private void printListCitizensThisLengthOfName(String lengthOfName) {
+        int length = Integer.parseInt(lengthOfName);
+        System.out.printf("There are a list of citizens whose name consists of %d letters:\n", length);
+        for (Citizen citizen : GOVERNMENT.getCitizens()) {
+            if (citizen.getFirstName().length() == length) {
                 System.out.println(" -" + citizen);
             }
         }

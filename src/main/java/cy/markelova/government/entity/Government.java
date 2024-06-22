@@ -36,7 +36,6 @@ public class Government {
     public static Government getInstance() {
         if (instance == null) {
             instance = new Government();
-          //  generateCitizens(citizens, districts);
         }
         return instance;
     }
