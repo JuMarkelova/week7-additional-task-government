@@ -4,7 +4,8 @@ import static cy.markelova.government.util.StringHelper.generateRandomString;
 
 public class Citizen {
 
-    private int id = 0;
+    private static int count = 0;
+    private final int ID;
     String firstName;
     String lastName;
     int age;
@@ -12,7 +13,8 @@ public class Citizen {
     District district;
 
     public Citizen(Government government, District district) {
-        this.id += 1;
+        count++;
+        this.ID = count;
         this.government = government;
         this.age = (int) (Math.random() * 95);
         this.firstName = generateRandomString(5, 10);
@@ -21,8 +23,12 @@ public class Citizen {
         this.district = district;
     }
 
+    public int getCount() {
+        return count;
+    }
+
     public int getID() {
-        return id;
+        return ID;
     }
 
     public Government getGovernment() {

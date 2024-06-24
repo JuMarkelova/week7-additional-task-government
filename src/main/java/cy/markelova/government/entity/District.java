@@ -6,10 +6,11 @@ import java.util.List;
 public class District {
 
     private String name;
-    private List<Citizen> citizens = new ArrayList<>();
+    private List<Citizen> citizens;
 
     public District(String name, Government government) {
         this.name = name;
+        citizens = new ArrayList<>();
         government.getDistricts().add(this);
     }
 
