@@ -24,10 +24,25 @@ public class GovernmentTests {
     public void testAddingCitizen() {
         Government government = Government.getInstance();
         int countCitizens = government.getCitizens().size();
+
         District randomDistrict = government.getDistricts().
                 get((int) (Math.random() * government.getDistricts().size()));
         Citizen citizen = new Citizen(government, randomDistrict);
+
         Assert.assertEquals(government.getCitizens().size(), countCitizens + 1,
                 "Incorrect number of citizens");
+    }
+
+    @Test
+    public void testCountAverageAgeCitizens() {
+        Government government = Government.getInstance();
+        int averageAgeCitizens = government.countAverageAgeCitizens();
+
+        int sum = 0;
+        for (Citizen citizen : government.getCitizens()) {
+            sum += citizen.getAge();
+        }
+        int testAverageAgeCitizens = sum / government.getCitizens().size();
+        Assert.assertEquals(averageAgeCitizens, testAverageAgeCitizens, "Incorrect average age");
     }
 }
