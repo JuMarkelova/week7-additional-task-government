@@ -23,7 +23,6 @@ public class Government {
         new Region("Siberian", 4361727, this);
         new Region("Ural", 1818497, this);
         this.capital = this.cities.getFirst();
-        generateCitizens(citizens, districts);
     }
 
     public static Government getInstance() {
@@ -79,15 +78,6 @@ public class Government {
 
     public void setCapital(City capital) {
         this.capital = capital;
-    }
-
-    public void generateCitizens(List<Citizen> citizens, List<District> districts) {
-        for (District district : districts) {
-            for (int i = 0; i < Math.random() * 20 + 10; i++) {
-                Citizen citizen = new Citizen(this, district);
-                district.setCitizens(citizen);
-            }
-        }
     }
 
     public int countRegions() {

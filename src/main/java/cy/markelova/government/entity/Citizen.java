@@ -21,6 +21,7 @@ public class Citizen {
         this.lastName = generateRandomString(5, 10);
         this.government.setCitizens(this);
         this.district = district;
+        district.setCitizens(this);
     }
 
     public int getCount() {

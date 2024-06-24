@@ -9,14 +9,17 @@ public class City {
 
     private String name;
     private List<District> districts;
+    private Region region;
 
-    public City(String name, Government government) {
+    public City(String name, Government government, Region region) {
         this.name = name;
+        this.region = region;
         this.districts = new ArrayList<>();
         for (int i = 0; i < Math.random() * 5 + 2; i++) {
-            this.districts.add(new District(generateRandomString(5, 15), government));
+            this.districts.add(new District(generateRandomString(5, 15), government, this));
         }
         government.getCities().add(this);
+        region.setCities(this);
     }
 
     public String getName() {
@@ -31,7 +34,15 @@ public class City {
         this.name = name;
     }
 
-    public void setDistricts(List<District> districts) {
-        this.districts = districts;
+    public void setDistricts(District district) {
+        districts.add(district);
+    }
+
+    public Region getRegion() {
+        return region;
+    }
+
+    public void setRegion(Region region) {
+        this.region = region;
     }
 }
