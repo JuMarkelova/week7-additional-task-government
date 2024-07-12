@@ -18,7 +18,6 @@ public class City {
         for (int i = 0; i < Math.random() * 5 + 2; i++) {
             this.districts.add(new District(generateRandomString(5, 15), government, this));
         }
-        government.getCities().add(this);
         region.setCities(this);
     }
 

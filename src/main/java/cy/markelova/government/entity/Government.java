@@ -9,20 +9,18 @@ public class Government {
     private String name;
     private City capital;
     private List<Region> regions;
-    private List<City> cities;
     private List<District> districts;
     private List<Citizen> citizens;
 
     private Government() {
         this.name = "Russia";
         this.regions = new ArrayList<>();
-        this.cities = new ArrayList<>();
         this.districts = new ArrayList<>();
         this.citizens = new ArrayList<>();
         new Region("Central", 650205, this);
         new Region("Siberian", 4361727, this);
         new Region("Ural", 1818497, this);
-        this.capital = this.cities.getFirst();
+        this.capital = new City("Capital", this, regions.getFirst());
     }
 
     public static Government getInstance() {
@@ -40,10 +38,6 @@ public class Government {
         return regions;
     }
 
-    public List<City> getCities() {
-        return cities;
-    }
-
     public List<District> getDistricts() {
         return districts;
     }
@@ -58,10 +52,6 @@ public class Government {
 
     public void setRegions(Region region) {
         this.regions.add(region);
-    }
-
-    public void setCities(City city) {
-        this.cities.add(city);
     }
 
     public void setDistricts(District district) {
@@ -82,6 +72,14 @@ public class Government {
 
     public int countRegions() {
         return regions.size();
+    }
+
+    public int countCities() {
+        int count = 0;
+        for (Region region : regions) {
+            count += region.getCities().size();
+        }
+        return count;
     }
 
     public int countGovernmentsArea() {

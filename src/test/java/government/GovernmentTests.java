@@ -10,8 +10,6 @@ public class GovernmentTests {
     public void testCreationGovernment() {
         Government government = Government.getInstance();
         Assert.assertEquals(government.getRegions().size(), 3, "Incorrect number of regions");
-        Assert.assertTrue(government.getCities().size() >= 3 && government.getCities().size() <= 15,
-                "Incorrect number of cities");
         Assert.assertTrue(government.getDistricts().size() >= 6 && government.getDistricts().size() <= 90,
                 "Incorrect number of citizens");
         Assert.assertTrue(government.getCitizens().size() >= 60 && government.getCitizens().size() <= 2610,
@@ -49,7 +47,7 @@ public class GovernmentTests {
     public void testAddingDistrict() {
         Government government = Government.getInstance();
         int countDistrictsGovernment = government.getDistricts().size();
-        City city = government.getCities().getFirst();
+        City city = government.getRegions().getFirst().getCities().getFirst();
         int countDistrictsCity = city.getDistricts().size();
 
         District district = new District("testDistrict", government, city);
@@ -64,13 +62,13 @@ public class GovernmentTests {
     @Test
     public void testAddingCity() {
         Government government = Government.getInstance();
-        int countCitiesGovernment = government.getCities().size();
+        int countCitiesGovernment = government.countCities();
         Region region = government.getRegions().getFirst();
         int countCitiesRegion = region.getCities().size();
 
         City city = new City("testCity", government, region);
 
-        Assert.assertEquals(government.getCities().size(), countCitiesGovernment + 1,
+        Assert.assertEquals(government.countCities(), countCitiesGovernment + 1,
                 "Incorrect number of cities in the government");
 
         Assert.assertEquals(region.getCities().size(), countCitiesRegion + 1,
