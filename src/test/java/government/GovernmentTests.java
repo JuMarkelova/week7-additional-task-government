@@ -10,8 +10,10 @@ public class GovernmentTests {
     public void testCreationGovernment() {
         Government government = Government.getInstance();
         Assert.assertEquals(government.getRegions().size(), 3, "Incorrect number of regions");
+        Assert.assertTrue(government.countCities() >= 3 && government.countCities() <= 16,
+                "Incorrect number of cities");
         Assert.assertTrue(government.getDistricts().size() >= 6 && government.getDistricts().size() <= 90,
-                "Incorrect number of citizens");
+                "Incorrect number of districts");
         Assert.assertTrue(government.getCitizens().size() >= 60 && government.getCitizens().size() <= 2610,
                 "Incorrect number of citizens");
     }

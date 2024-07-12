@@ -19,7 +19,6 @@ public class Region {
         this.cities = new ArrayList<>();
         for (int i = 0; i < Math.random() * 5 + 1; i++) {
             City city = new City(generateRandomString(4, 12), government, this);
-            this.cities.add(city);
         }
         this.area = area;
         this.regionalCenter = cities.get((int) (Math.random() * cities.size()));
