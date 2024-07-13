@@ -6,6 +6,8 @@ import cy.markelova.government.entity.Region;
 
 import java.util.Scanner;
 
+import static cy.markelova.government.util.MenuMessages.instructionMessage;
+
 public class MenuActions {
 
     private static final Government GOVERNMENT = Government.getInstance();
@@ -59,19 +61,7 @@ public class MenuActions {
     }
 
     private void showInstructions() {
-        String instruction = """
-                Select an action (write a number or exit):
-                0 - Show instructions
-                1 - The capital of the state
-                2 - Number of regions
-                3 - Area of the state
-                4 - List of regional centers
-                5 - An average age of citizens
-                6 - List of citizens whose name starts with a certain letter
-                7 - List of citizens whose name consists of a certain number of letter
-                exit - exit
-                """;
-        System.out.println(instruction);
+        System.out.println(instructionMessage);
     }
 
     private void printCapital() {
