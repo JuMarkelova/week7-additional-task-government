@@ -1,6 +1,6 @@
 package cy.markelova.government.entity;
 
-import static cy.markelova.government.util.StringHelper.generateRandomString;
+import static cy.markelova.government.util.DataGenerator.generateRandomString;
 
 public class Citizen {
 

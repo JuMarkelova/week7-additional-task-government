@@ -2,7 +2,7 @@ package cy.markelova.government.util;
 
 import java.util.Random;
 
-public class StringHelper {
+public class DataGenerator {
 
     public static String generateRandomString(int minLengthOfSequence, int maxLengthOfSequence) {
         Random random = new Random();

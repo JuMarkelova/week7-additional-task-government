@@ -3,7 +3,7 @@ package cy.markelova.government.entity;
 import java.util.ArrayList;
 import java.util.List;
 
-import static cy.markelova.government.util.StringHelper.generateRandomString;
+import static cy.markelova.government.util.DataGenerator.generateRandomString;
 
 public class Region {
 
