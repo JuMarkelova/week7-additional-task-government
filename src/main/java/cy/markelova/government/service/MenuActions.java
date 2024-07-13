@@ -11,51 +11,52 @@ import static cy.markelova.government.util.MenuMessages.instructionMessage;
 public class MenuActions {
 
     private static final Government GOVERNMENT = Government.getInstance();
-    static Scanner scanner = new Scanner(System.in);
 
     public void runMenu() {
         showInstructions();
         boolean isRun = true;
-        while (isRun) {
-            String userChoice = scanner.nextLine();
-            switch (userChoice) {
-                case "0": {
-                    showInstructions();
-                    break;
+        try (Scanner scanner = new Scanner(System.in)) {
+            while (isRun) {
+                String userChoice = scanner.nextLine();
+                switch (userChoice) {
+                    case "0": {
+                        showInstructions();
+                        break;
+                    }
+                    case "1": {
+                        printCapital();
+                        break;
+                    }
+                    case "2": {
+                        printCountRegions();
+                        break;
+                    }
+                    case "3": {
+                        printGovernmentArea();
+                        break;
+                    }
+                    case "4": {
+                        printRegionalCenters();
+                        break;
+                    }
+                    case "5": {
+                        printAverageAgeCitizens();
+                        break;
+                    }
+                    case "6": {
+                        printNamesStartsWithLetter(inputFirstLetterName());
+                        break;
+                    }
+                    case "7": {
+                        printNamesGivenLength(inputLengthName());
+                        break;
+                    }
+                    case "exit":
+                        isRun = false;
+                        break;
+                    default:
+                        System.out.println("There is no such option.");
                 }
-                case "1": {
-                    printCapital();
-                    break;
-                }
-                case "2": {
-                    printCountRegions();
-                    break;
-                }
-                case "3": {
-                    printGovernmentArea();
-                    break;
-                }
-                case "4": {
-                    printRegionalCenters();
-                    break;
-                }
-                case "5": {
-                    printAverageAgeCitizens();
-                    break;
-                }
-                case "6": {
-                    printNamesStartsWithLetter(inputFirstLetterName());
-                    break;
-                }
-                case "7": {
-                    printNamesGivenLength(inputLengthName());
-                    break;
-                }
-                case "exit":
-                    isRun = false;
-                    break;
-                default:
-                    System.out.println("There is no such option.");
             }
         }
     }
@@ -90,7 +91,9 @@ public class MenuActions {
 
     private String inputFirstLetterName() {
         System.out.println("Input first letter of a name to find citizens: ");
-        return (scanner.nextLine());
+        try (Scanner scanner = new Scanner(System.in)) {
+            return (scanner.nextLine());
+        }
     }
 
     private void printNamesStartsWithLetter(String letter) {
@@ -104,7 +107,9 @@ public class MenuActions {
 
     private String inputLengthName() {
         System.out.println("Input number of letters of a name to find citizens: ");
-        return scanner.nextLine();
+        try (Scanner scanner = new Scanner(System.in)) {
+            return scanner.nextLine();
+        }
     }
 
     private void printNamesGivenLength(String lengthOfName) {
