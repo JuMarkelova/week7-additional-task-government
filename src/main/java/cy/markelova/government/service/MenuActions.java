@@ -34,7 +34,7 @@ public class MenuActions {
                     break;
                 }
                 case "4": {
-                    printListOfRegionalCenters();
+                    printRegionalCenters();
                     break;
                 }
                 case "5": {
@@ -42,11 +42,11 @@ public class MenuActions {
                     break;
                 }
                 case "6": {
-                    printListCitizensNameStartsWithCertainLetter(inputFirstLetterOfCitizenName());
+                    printNamesStartsWithLetter(inputFirstLetterName());
                     break;
                 }
                 case "7": {
-                    printListCitizensThisLengthOfName(inputNumberOfLettersOfCitizenName());
+                    printNamesGivenLength(inputLengthName());
                     break;
                 }
                 case "exit":
@@ -86,7 +86,7 @@ public class MenuActions {
         System.out.printf("The area of the state is %d km^2.\n", GOVERNMENT.countGovernmentsArea());
     }
 
-    private void printListOfRegionalCenters() {
+    private void printRegionalCenters() {
         System.out.println("There is a list of regional centers of the state: ");
         for (Region region : GOVERNMENT.getRegions()) {
             System.out.println(" -" + region.getRegionalCenter().getName());
@@ -98,12 +98,12 @@ public class MenuActions {
                 GOVERNMENT.countAverageAgeCitizens());
     }
 
-    private String inputFirstLetterOfCitizenName() {
+    private String inputFirstLetterName() {
         System.out.println("Input first letter of a name to find citizens: ");
         return (scanner.nextLine());
     }
 
-    private void printListCitizensNameStartsWithCertainLetter(String letter) {
+    private void printNamesStartsWithLetter(String letter) {
         System.out.printf("There are a list of citizens name starts with '%s':\n", letter);
         for (Citizen citizen : GOVERNMENT.getCitizens()) {
             if (citizen.getFirstName().startsWith(letter)) {
@@ -112,12 +112,12 @@ public class MenuActions {
         }
     }
 
-    private String inputNumberOfLettersOfCitizenName() {
+    private String inputLengthName() {
         System.out.println("Input number of letters of a name to find citizens: ");
         return scanner.nextLine();
     }
 
-    private void printListCitizensThisLengthOfName(String lengthOfName) {
+    private void printNamesGivenLength(String lengthOfName) {
         int length = Integer.parseInt(lengthOfName);
         System.out.printf("There are a list of citizens whose name consists of %d letters:\n", length);
         for (Citizen citizen : GOVERNMENT.getCitizens()) {
