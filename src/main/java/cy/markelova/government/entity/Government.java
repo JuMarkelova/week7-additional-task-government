@@ -9,13 +9,11 @@ public class Government {
     private String name;
     private City capital;
     private List<Region> regions;
-    private List<District> districts;
     private List<Citizen> citizens;
 
     private Government() {
         this.name = "Russia";
         this.regions = new ArrayList<>();
-        this.districts = new ArrayList<>();
         this.citizens = new ArrayList<>();
         new Region("Central", 650205, this);
         new Region("Siberian", 4361727, this);
@@ -38,10 +36,6 @@ public class Government {
         return regions;
     }
 
-    public List<District> getDistricts() {
-        return districts;
-    }
-
     public List<Citizen> getCitizens() {
         return this.citizens;
     }
@@ -52,10 +46,6 @@ public class Government {
 
     public void setRegions(Region region) {
         this.regions.add(region);
-    }
-
-    public void setDistricts(District district) {
-        this.districts.add(district);
     }
 
     public void setCitizens(Citizen citizen) {
@@ -78,6 +68,16 @@ public class Government {
         int count = 0;
         for (Region region : regions) {
             count += region.getCities().size();
+        }
+        return count;
+    }
+
+    public int countDistricts() {
+        int count = 0;
+        for (Region region : regions) {
+            for (City city : region.getCities()) {
+                count += city.getDistricts().size();
+            }
         }
         return count;
     }

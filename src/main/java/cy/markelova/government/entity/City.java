@@ -16,7 +16,7 @@ public class City {
         this.region = region;
         this.districts = new ArrayList<>();
         for (int i = 0; i < Math.random() * 5 + 2; i++) {
-            this.districts.add(new District(generateRandomString(5, 15), government, this));
+            District district = new District(generateRandomString(5, 15), government, this);
         }
         region.setCities(this);
     }

@@ -18,9 +18,7 @@ public class District {
             this.citizens.add(citizen);
             government.setCitizens(citizen);
         }
-        government.getDistricts().add(this);
         city.setDistricts(this);
-
     }
 
     public String getName() {
